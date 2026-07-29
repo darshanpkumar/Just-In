@@ -47,7 +47,6 @@ export default function RegisterFace() {
       const formData = new FormData();
       formData.append('image', imageFile);
 
-      // Endpoint: POST /employees/{employee_id}/register-face
       const response = await API.post(`/employees/${employeeId}/register-face`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
@@ -65,7 +64,7 @@ export default function RegisterFace() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow-xl border border-slate-100 mt-8">
+    <div className="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow-xl border border-slate-100">
       <h2 className="text-2xl font-bold text-slate-800 mb-4 text-center flex items-center justify-center gap-2">
         <UserCheck className="w-7 h-7 text-emerald-600" /> Live Face Enrollment
       </h2>
@@ -88,18 +87,18 @@ export default function RegisterFace() {
             value={employeeId}
             onChange={(e) => setEmployeeId(e.target.value)}
             placeholder="Enter Employee ID (e.g. 7)"
-            className="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition"
+            className="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none transition"
           />
         </div>
 
         <button
           onClick={handleRegisterFace}
           disabled={loading}
-          className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300 text-white font-semibold rounded-lg shadow-lg hover:shadow-emerald-200 transition flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 disabled:bg-emerald-300 text-white font-semibold rounded-lg shadow-lg transition flex items-center justify-center gap-2 cursor-pointer"
         >
           {loading ? (
             <>
-              <RefreshCw className="w-5 h-5 animate-spin" /> Enrolling Face & Generating Embeddings...
+              <RefreshCw className="w-5 h-5 animate-spin" /> Enrolling Face...
             </>
           ) : (
             'Capture & Enroll Face'

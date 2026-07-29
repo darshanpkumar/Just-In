@@ -15,7 +15,6 @@ export default function AttendanceKiosk() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
 
-  // Convert base64 dataURL from webcam into a File object for API upload
   const dataURLtoFile = (dataurl, filename) => {
     let arr = dataurl.split(','),
       mime = arr[0].match(/:(.*?);/)[1],
@@ -48,7 +47,6 @@ export default function AttendanceKiosk() {
       const formData = new FormData();
       formData.append('image', imageFile);
 
-      // Matches FastAPI: POST /attendance/{employee_id}/check-in
       const response = await API.post(`/attendance/${employeeId}/check-in`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
@@ -71,7 +69,6 @@ export default function AttendanceKiosk() {
         <Camera className="w-7 h-7 text-indigo-600" /> AI Attendance Check-In
       </h2>
 
-      {/* Webcam Viewport */}
       <div className="relative rounded-xl overflow-hidden bg-black aspect-video mb-6 border-2 border-indigo-100 shadow-inner">
         <Webcam
           audio={false}
@@ -82,7 +79,6 @@ export default function AttendanceKiosk() {
         />
       </div>
 
-      {/* Inputs & Action Button */}
       <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-slate-700 mb-1">Employee ID</label>
@@ -91,14 +87,14 @@ export default function AttendanceKiosk() {
             value={employeeId}
             onChange={(e) => setEmployeeId(e.target.value)}
             placeholder="Enter your Employee ID (e.g. 7)"
-            className="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
+            className="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition"
           />
         </div>
 
         <button
           onClick={handleCheckIn}
           disabled={loading}
-          className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white font-semibold rounded-lg shadow-lg hover:shadow-indigo-200 transition flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white font-semibold rounded-lg shadow-lg transition flex items-center justify-center gap-2 cursor-pointer"
         >
           {loading ? (
             <>
@@ -109,7 +105,6 @@ export default function AttendanceKiosk() {
           )}
         </button>
 
-        {/* Status Alert */}
         {status && (
           <div
             className={`p-4 rounded-lg flex items-start gap-3 text-sm font-medium ${
