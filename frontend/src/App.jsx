@@ -63,7 +63,7 @@ function Navigation({ activeTab, setActiveTab }) {
               logout();
               setActiveTab('login');
             }}
-            className="px-4 py-2 rounded-lg text-sm font-semibold text-red-600 hover:bg-red-50 flex items-center gap-2 border border-red-200 transition"
+            className="px-4 py-2 rounded-lg text-sm font-semibold text-red-600 hover:bg-red-50 flex items-center gap-2 border border-red-200 transition cursor-pointer"
           >
             <LogOut className="w-4 h-4" /> Logout ({user.email.split('@')[0]})
           </button>
@@ -82,7 +82,9 @@ function MainContent() {
       <main>
         {activeTab === 'checkin' && <AttendanceKiosk />}
         {activeTab === 'register' && <RegisterFace />}
-        {activeTab === 'admin' && <AdminDashboard />}
+        {activeTab === 'admin' && (
+          <AdminDashboard onSelectRegisterFace={() => setActiveTab('register')} />
+        )}
         {activeTab === 'login' && <Login onLoginSuccess={() => setActiveTab('admin')} />}
       </main>
     </div>
