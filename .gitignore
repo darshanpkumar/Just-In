@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+uploads/profiles/*
+uploads/encodings/*
+!uploads/profiles/.gitkeep
+!uploads/encodings/.gitkeep
+.vscode/
